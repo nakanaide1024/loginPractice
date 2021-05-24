@@ -1,8 +1,8 @@
 <?php
 
+session_start();
 require_once '../classes/UserLogic.php';
 
-session_start();
 
 // エラーメッセージ
 $err = [];

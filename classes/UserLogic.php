@@ -26,4 +26,18 @@ class UserLogic{
       return $result;
     }
   }
+
+  /**
+   * ログイン処理
+   * @param string $email
+   * @param string $password
+   * @return bool $result
+   */
+
+  public static function login($email ,$password){
+    //結果
+    $result = false;
+    // ユーザーをemailから検索して取得
+    $user = self::getUserByEmail($email);
+  }
 }

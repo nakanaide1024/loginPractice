@@ -22,7 +22,7 @@ if (count($err) > 0) {
    return;
 }
 //ログイン成功時の処理
-echo 'ログインしました';
+$result = userLogic::login($email, $password);
 
 
 ?>

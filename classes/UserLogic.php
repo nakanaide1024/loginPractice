@@ -51,7 +51,7 @@ class UserLogic{
       session_regenerate_id(true);
       $_SESSION['login_user'] = $user;
       $result = true;
-      return = $result;
+      return $result;
     }
 
     $_SESSION['msg'] = 'パスワードが一致しません';

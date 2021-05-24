@@ -8,7 +8,7 @@
 </head>
 <body>
   <h2>ログインフォーム</h2>
-  <form action="register.php" method="POST">
+  <form action="top.php" method="POST">
   <p>
     <label for="email">メールアドレス:</label>
     <input type="email" name="email">

@@ -1,45 +1,53 @@
 <?php
+
 session_start();
+require_once '../classes/UserLogic.php';
 
-$err = $_SESSION;
 
-//セッションを消す処理
-$_SESSION = array();
-session_destroy();
+// エラーメッセージ
+$err = [];
+
+//バリデーション
+if (!$email = filter_input(INPUT_POST, 'email')) {
+    $err['email'] = 'メールアドレスを記入して下さい';
+}
+if (!$password = filter_input(INPUT_POST, 'password')) {
+    $err['password'] = 'パスワードを記入して下さい';
+}
+
+if (count($err) > 0) {
+    //エラーがあった場合は戻す
+    $_SESSION = $err;
+   header('location: login_form.php');
+   return;
+}
+//ログイン成功時の処理
+$result = UserLogic::login($email, $password);
+//ログイン失敗時の処理
+if(!$result){
+  header('location: login.php');
+   return;
+}
+echo 'ログイン成功です。';
+
+
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ログイン画面</title>
+  <title>ユーザー登録完了画面</title>
 </head>
 <body>
-  <h2>ログインフォーム</h2>
-    <?php if (isset($err['msg'])) : ?>
-          <p><?php echo $err['msg']; ?></p>
-    <?php endif; ?>
-  <form action="top.php" method="POST">
-  <p>
-    <label for="email">メールアドレス:</label>
-    <input type="email" name="email">
-    <?php if (isset($err['email'])) : ?>
-          <p><?php echo $err['email']; ?></p>
-    <?php endif; ?>
-  </p>
-  <p>
-    <label for="password">パスワード:</label>
-    <input type="password" name="password">
-    <?php if (isset($err['password'])) : ?>
-          <p><?php echo $err['password']; ?></p>
-    <?php endif; ?>
-  </p>
-  <p>
-  <input type="submit" value="ログイン">
-  </p>
-  </form>
-  <a href="singup_form.php">新規登録はこちら</a>
+<?php if (count($err) > 0) : ?>
+    <?php foreach ($err as $e) : ?>
+      <p><?php echo $e?></p>
+      <?php endforeach ?>
+<?php else : ?>
+  <p>ユーザー登録が完了しました。</p>
+<?php endif ?>
+<a href="./login.php">戻る</a>
 </body>
 </html>

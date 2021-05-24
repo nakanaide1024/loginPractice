@@ -39,6 +39,23 @@ class UserLogic{
     $result = false;
     // ユーザーをemailから検索して取得
     $user = self::getUserByEmail($email);
+
+    if (!$user){
+      $_SESSION['msg'] = 'emailが一致しません';
+      return $result;
+    }
+
+    // パスワードの照会
+    if (password_verify($password, $user['password'])){
+      //ログイン成功
+      session_regenerate_id(true);
+      $_SESSION['login_user'] = $user;
+      $result = true;
+      return = $result;
+    }
+
+    $_SESSION['msg'] = 'パスワードが一致しません';
+      return $result;
   }
 
    /**
@@ -53,18 +70,19 @@ class UserLogic{
     //SQLの結果
     $sql = 'SELECT * FROM users WHERE email = ?';
 
+
     //emailを配列に入れる
     $arr = [];
-    $arr = $email;
+    $arr[] = $email;
 
-    try{
+    try {
       $stmt = connect()->prepare($sql);
-      $stmt->execute($arr);
+      $stmt->execute($arr); 
       // SQLの結果を返す
       $user = $stmt->fetch();
       return $user;
     }catch(Exeption $e){
-      return $result;
+      return false;
     }
   }
 }

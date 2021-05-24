@@ -22,7 +22,13 @@ if (count($err) > 0) {
    return;
 }
 //ログイン成功時の処理
-$result = userLogic::login($email, $password);
+$result = UserLogic::login($email, $password);
+//ログイン失敗時の処理
+if(!$result){
+  header('location: login.php');
+   return;
+}
+echo 'ログイン成功です。';
 
 
 ?>

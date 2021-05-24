@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+$err = $_SESSION;
+
+//セッションを消す処理
+$_SESSION = array();
+session_destroy();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,10 +22,16 @@
   <p>
     <label for="email">メールアドレス:</label>
     <input type="email" name="email">
+    <?php if (isset($err['email'])) : ?>
+          <p><?php echo $err['email']; ?></p>
+    <?php endif; ?>
   </p>
   <p>
     <label for="password">パスワード:</label>
     <input type="password" name="password">
+    <?php if (isset($err['password'])) : ?>
+          <p><?php echo $err['password']; ?></p>
+    <?php endif; ?>
   </p>
   <p>
   <input type="submit" value="ログイン">

@@ -5,8 +5,8 @@
  * @param string $str 対象の文字列
  * @return string 処理された文字列 
  */
-function h($str){
-  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+function h($str) {
+   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
 /**
@@ -15,7 +15,7 @@ function h($str){
  * @return string $csrf_token
  */
 
- function setToken(){
+ function setToken() {
    //トークンを生成
    //トークンからそのトークンを送信
    //送信後の画面でそのトークンを照会
@@ -23,7 +23,6 @@ function h($str){
    session_start();
    $csrf_token = bin2hex(random_bytes(32));
    $_SESSION['csrf_token'] = $csrf_token;
-
    return $csrf_token;
  }
 ?>

@@ -34,10 +34,37 @@ class UserLogic{
    * @return bool $result
    */
 
-  public static function login($email ,$password){
+  public static function login($email, $password){
     //結果
     $result = false;
     // ユーザーをemailから検索して取得
     $user = self::getUserByEmail($email);
+  }
+
+   /**
+   * emailからユーザーを取得
+   * @param string $email
+   * @return array|bool $user|false
+   */
+
+  public static function getUserByEmail($email){
+    //SQLの準備
+    //SQLの実行
+    //SQLの結果
+    $sql = 'SELECT * FROM users WHERE email = ?';
+
+    //emailを配列に入れる
+    $arr = [];
+    $arr = $email;
+
+    try{
+      $stmt = connect()->prepare($sql);
+      $stmt->execute($arr);
+      // SQLの結果を返す
+      $user = $stmt->fetch();
+      return $user;
+    }catch(Exeption $e){
+      return $result;
+    }
   }
 }

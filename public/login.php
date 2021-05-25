@@ -28,7 +28,7 @@ if(!$result){
   header('location: login.php');
    return;
 }
-echo 'ログイン成功です。';
+
 
 
 ?>
@@ -38,16 +38,11 @@ echo 'ログイン成功です。';
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ユーザー登録完了画面</title>
+  <title>ログイン完了</title>
 </head>
 <body>
-<?php if (count($err) > 0) : ?>
-    <?php foreach ($err as $e) : ?>
-      <p><?php echo $e?></p>
-      <?php endforeach ?>
-<?php else : ?>
-  <p>ユーザー登録が完了しました。</p>
-<?php endif ?>
-<a href="./login.php">戻る</a>
+<h2>ログイン完了</h2>
+<p>ログインしました。</p>
+<a href="./mypage.php">マイページへ</a>
 </body>
 </html>

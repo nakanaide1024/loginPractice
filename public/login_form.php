@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+require_once '../classes/UserLogic.php';
+
+$result = UserLogic::checkLogin();
+if($result){
+  header('location: mypage.php');
+  return;
+}
+
 $err = $_SESSION;
 
 //セッションを消す処理
@@ -40,6 +48,6 @@ session_destroy();
   <input type="submit" value="ログイン">
   </p>
   </form>
-  <a href="singup_form.php">新規登録はこちら</a>
+  <a href="signup_form.php">新規登録はこちら</a>
 </body>
 </html>

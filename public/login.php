@@ -3,7 +3,6 @@
 session_start();
 require_once '../classes/UserLogic.php';
 
-
 // エラーメッセージ
 $err = [];
 
@@ -25,7 +24,7 @@ if (count($err) > 0) {
 $result = UserLogic::login($email, $password);
 //ログイン失敗時の処理
 if(!$result){
-  header('location: login.php');
+  header('location: login_form.php');
    return;
 }
 

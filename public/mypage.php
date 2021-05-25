@@ -14,6 +14,6 @@ require_once '../classes/UserLogic.php';
   <h2>マイページ</h2>
   <p>ログインユーザー:</p>
   <p>メールアドレス:</p>
-<a href="./singup_form.php">ログアウト</a>
+<a href="./login.php">ログアウト</a>
 </body>
 </html>
